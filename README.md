@@ -1,10 +1,10 @@
 ## TP 3
 
-### Depuis le TP2, créer une interface administrateur et client pour votre projet avec une architecture MVC orientée objet.
+### Depuis le TP2, créer une interface administrateur et client pour le projet avec une architecture MVC orientée objet.
 
 ## Développement
 
-### • Ajouter les tables /champs nécessaires dans la base de données pour pouvoir gérer les utilisateurs.
+### • Ajouter les tables et les champs nécessaires dans la base de données pour pouvoir gérer les utilisateurs.
 
 ### Les mots de passe doivent être chiffrés.
 
