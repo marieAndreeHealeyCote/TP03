@@ -13,7 +13,7 @@
         <nav>
             <ul>
                 <li><a href="{{base}}/home">Accueil</a></li>
-                {% if session.privilege_id == 1%}
+                {% if session.privilege_id in [1, 2] %}
                 <li><a href="{{base}}/livres">Liste de livres</a></li>
                 {% endif%}
                 {% if session.privilege_id == 1%}
