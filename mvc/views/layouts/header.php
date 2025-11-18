@@ -12,11 +12,10 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{base}}/livres">Accueil</a></li>
-                <li><a href="#">Liste des Auteurs</a></li>
-                <li><a href="#">Liste des Catégories</a></li>
-                <li><a href="#">Liste des Éditeurs</a></li>
-                <li><a href="#">Connexion</a></li>
+                <li><a href="{{base}}/home">Accueil</a></li>
+                <li><a href="{{base}}/livres">Gestion des livres</a></li>
+                <li><a href="{{base}}/log">Journal de bord</a></li>
+                <li><a href="{{base}}/login">Connexion</a></li>
             </ul>
         </nav>
     </header>

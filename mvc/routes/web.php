@@ -8,7 +8,8 @@ use App\Controllers\AuthController;
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-
+Route::get('/home/edit', 'HomeController@edit');
+Route::post('/home/edit', 'HomeController@update');
 
 Route::get('/livres', 'LivreController@index');
 Route::get('/livre/show', 'LivreController@show');
@@ -24,5 +25,7 @@ Route::post('/user/create', 'UserController@store');
 Route::get('/login', 'AuthController@create');
 Route::post('/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');
+
+Route::get('/log', 'LogController@index');
 
 Route::dispatch();
