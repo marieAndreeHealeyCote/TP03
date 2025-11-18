@@ -12,12 +12,12 @@
     {% endif %}
 
     <form method="post">
-        <h2>Login</h2>
+        <h2>Connexion</h2>
 
-        <label>Username
+        <label>Nom d'utilisateur
             <input type="email" name="username" value="{{user.username}}">
         </label>
-        <label>Password
+        <label>Mot de passe
             <input type="password" name="password">
         </label>
 

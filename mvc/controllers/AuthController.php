@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Providers\View;
 use App\Providers\Validator;
 use App\Models\User;
+use App\Models\Livre;
+use App\Providers\Auth;
 
 
 class AuthController
@@ -26,7 +28,7 @@ class AuthController
             $user = new User;
             $checkuser = $user->checkUser($data['username'], $data['password']);
             if ($checkuser) {
-                return View::redirect('clients');
+                return View::redirect('livres');
             } else {
                 $errors['message'] = "Please check your credentials";
                 return view::render('auth/create', ['errors' => $errors, 'user' => $data]);
@@ -40,10 +42,10 @@ class AuthController
     public function index()
     {
         if (Auth::session()) {
-            $client = new Client;
-            $select = $client->select('name');
+            $livre = new Livre;
+            $select = $livre->select();
             if ($select) {
-                return View::render('client/index', ['clients' => $select]);
+                return View::render('livre/index', ['listeLivres' => $select]);
             }
             return View::render('error');
         }

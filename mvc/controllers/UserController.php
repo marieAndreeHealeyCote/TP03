@@ -37,7 +37,7 @@ class UserController
             $data['password'] = $user->hashPassword($data['password']);
             $insert = $user->insert($data);
             if ($insert) {
-                return view::redirect('login');
+                return view::redirect('livres');
             } else {
                 return view::render('error');
             }

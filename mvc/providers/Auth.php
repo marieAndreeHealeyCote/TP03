@@ -24,6 +24,12 @@ class Auth
             exit();
         }
     }
+
+    static public function user()
+    {
+        return $_SESSION['username'];
+    }
+
     public function __construct()
     {
         Auth::session();

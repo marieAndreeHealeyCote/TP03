@@ -6,8 +6,9 @@ use App\Models\Livre;
 use App\Models\Auteur;
 use App\Models\Categorie;
 use App\Models\Editeur;
-use App\Providers\Validator;
 use App\Providers\View;
+use App\Providers\Validator;
+use App\Providers\Auth;
 
 class LivreController
 {
@@ -96,6 +97,9 @@ class LivreController
 
     public function create()
     {
+        Auth::session();
+        Auth::privilege(1);
+
         $auteur = new Auteur;
         $listeAuteurs = $auteur->select();
 
@@ -114,6 +118,8 @@ class LivreController
 
     public function store($data = [])
     {
+        Auth::session();
+
         $validator = new Validator;
         $validator->field('titre', $data['titre'])->required()->max(45);
         $validator->field('auteur_id', $data['auteur_id'])->required()->int();
@@ -155,6 +161,8 @@ class LivreController
 
     public function edit($data = [])
     {
+        Auth::session();
+
         if (isset($data['id']) && $data['id'] != null) {
             $livre = new Livre;
             $selectLivre = $livre->selectId($data['id']);
@@ -185,6 +193,8 @@ class LivreController
 
     public function update($data = [], $get = [])
     {
+        Auth::session();
+
         if (isset($get['id']) && $get['id'] != null) {
             $validator = new Validator;
             $validator->field('titre', $data['titre'])->required()->max(45);
@@ -229,6 +239,8 @@ class LivreController
 
     public function delete($data = [])
     {
+        Auth::session();
+
         $livre = new Livre;
         $delete = $livre->delete($data['id']);
         if ($delete) {

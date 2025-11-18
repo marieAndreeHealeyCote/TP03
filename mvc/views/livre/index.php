@@ -2,8 +2,9 @@
 
 <body>
     <h1>Librairie - Gestion de livres</h1>
+    {% if session.privilege_id ==1 %}
     <a href="{{base}}/livre/create" class="btn bleu"> Ajouter un livre</a>
-
+    {% endif %}
     <table>
         <thead>
             <tr>
@@ -24,8 +25,13 @@
                 <td>{{ livre.auteur_nom }}</td>
                 <td>{{ livre.annee_publication }}</td>
                 <td>
+                    <a href="{{base}}/livre/show?id={{livre.id}}" class="btn bleu">Voir détails</a>
+                    {% if session.privilege_id ==1 %}
                     <a href="{{base}}/livre/show?id={{livre.id}}" class="btn vert">Modifier</a>
+                    {% endif %}
+                    {% if session.privilege_id ==1 %}
                     <a href="{{base}}/livre/delete?id={{livre.id}}" class="btn rouge" onclick="return confirm('Supprimer ce livre ?')">Supprimer</a>
+                    {% endif %}
                 </td>
                 <td>{{ livre.categorie_nom }}</td>
                 <td>{{ livre.editeur_nom }}</td>

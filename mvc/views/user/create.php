@@ -12,20 +12,20 @@
     {% endif %}
 
     <form method="post">
-        <h2>New User</h2>
-        <label>Name
+        <h2>Nouvel utilisateur</h2>
+        <label>Nom
             <input type="text" name="name" value="{{user.name}}">
         </label>
-        <label>Username
+        <label>Nom d'utilisateur
             <input type="email" name="username" value="{{user.username}}">
         </label>
-        <label>Password
+        <label>Mot de passe
             <input type="password" name="password">
         </label>
-        <label>Email
+        <label>Courriel
             <input type="email" name="email" value="{{user.email}}">
         </label>
-        <label>Privilege
+        <label>Privilège
             <select name="privilege_id">
                 <option value="">Select</option>
                 {% for privilege in privileges %}
