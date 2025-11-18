@@ -22,7 +22,7 @@
         </label>
 
 
-        <input type="submit" class="btn" value="Login">
+        <input type="submit" class="btn bleu" value="Connexion">
     </form>
 </div>
 {{ include('layouts/footer.php')}}

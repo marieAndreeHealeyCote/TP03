@@ -17,7 +17,7 @@
         <label>Password
             <input type="password" name="password">
         </label>
-        <input type="submit" class="btn" value="login">
+        <input type="submit" class="btn bleu" value="Connexion">
     </form>
 </div>
 {{ include ('layouts/footer.php')}}

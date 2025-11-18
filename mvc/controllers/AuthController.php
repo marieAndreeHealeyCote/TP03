@@ -52,7 +52,7 @@ class AuthController
     }
     public function delete()
     {
-        session_destroy();
+        session_destroy(); //destroy the session
         return View::redirect('login');
     }
 }

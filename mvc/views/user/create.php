@@ -33,7 +33,7 @@
                 {% endfor %}
             </select>
         </label>
-        <input type="submit" class="btn" value="Save">
+        <input type="submit" class="btn bleu" value="Sauvegarder">
     </form>
 </div>
 {{ include('layouts/footer.php')}}

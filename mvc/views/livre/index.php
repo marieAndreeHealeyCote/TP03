@@ -1,7 +1,7 @@
 {{ include('layouts/header.php', {'title': 'Livre'}) }}
 
 <body>
-    <h1>Librairie - Gestion de livres</h1>
+    <h1>Liste de livres</h1>
     {% if session.privilege_id ==1 %}
     <a href="{{base}}/livre/create" class="btn bleu"> Ajouter un livre</a>
     {% endif %}

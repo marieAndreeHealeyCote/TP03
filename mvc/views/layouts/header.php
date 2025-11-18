@@ -14,7 +14,7 @@
             <ul>
                 <li><a href="{{base}}/home">Accueil</a></li>
                 {% if session.privilege_id == 1%}
-                <li><a href="{{base}}/livres">Gestion des livres</a></li>
+                <li><a href="{{base}}/livres">Liste de livres</a></li>
                 {% endif%}
                 {% if session.privilege_id == 1%}
                 <li><a href="{{base}}/log">Journal de bord</a></li>
@@ -25,7 +25,7 @@
                 {%if guest %}
                 <li><a href="{{base}}/login">Connexion</a></li>
                 {% else %}
-                <li><a href="{{base}}/login">Déconnexion</a></li>
+                <li><a href="{{base}}/logout">Déconnexion</a></li>
                 {% endif %}
             </ul>
         </nav>

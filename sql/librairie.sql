@@ -65,6 +65,8 @@ INSERT INTO auteurs (nom) VALUES
 INSERT INTO livres (titre, auteur_id, annee_publication, categorie_id, editeur_id) VALUES
 ('Je suis un livre', 1, 1990, 1, 1);
 
+INSERT INTO librairie.log (username, page, date) VALUES ('admin', '/log', '2025-11-17 22:23:00.00');
+
 -- Privilege
 CREATE TABLE librairie.privilege (
     id INT AUTO_INCREMENT PRIMARY KEY,
