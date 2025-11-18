@@ -9,12 +9,17 @@ use App\Models\Editeur;
 use App\Providers\View;
 use App\Providers\Validator;
 use App\Providers\Auth;
+use App\Models\Log;
 
 class LivreController
 {
 
     public function index()
     {
+        //noter dans journal de bord que l'utilisateur a visité cette page
+        $log = new Log;
+        $x = $log->insert(['username' => Auth::username(), 'page' => '/livres', 'date' => date('Y-m-d H:i:s')]);
+
         $livre = new Livre;
         $selectLivre = $livre->select();
 
@@ -61,6 +66,11 @@ class LivreController
     public function show($data = [])
     {
         if (isset($data['id']) && $data['id'] != null) {
+
+            //noter dans journal de bord que l'utilisateur a visité cette page
+            $log = new Log;
+            $log->insert(['username' => Auth::username(), 'page' => '/livre/show', 'date' => date('Y-m-d H:i:s')]);
+
             $livre = new Livre;
             $selectLivre = $livre->selectId($data['id']);
 
@@ -99,6 +109,10 @@ class LivreController
     {
         Auth::session();
         Auth::privilege(1);
+
+        //noter dans journal de bord que l'utilisateur a visité cette page
+        $log = new Log;
+        $log->insert(['username' => Auth::username(), 'page' => '/livre/create', 'date' => date('Y-m-d H:i:s')]);
 
         $auteur = new Auteur;
         $listeAuteurs = $auteur->select();
@@ -162,6 +176,11 @@ class LivreController
     public function edit($data = [])
     {
         Auth::session();
+        Auth::privilege(1);
+
+        //noter dans journal de bord que l'utilisateur a visité cette page
+        $log = new Log;
+        $log->insert(['username' => Auth::username(), 'page' => '/livre/edit', 'date' => date('Y-m-d H:i:s')]);
 
         if (isset($data['id']) && $data['id'] != null) {
             $livre = new Livre;

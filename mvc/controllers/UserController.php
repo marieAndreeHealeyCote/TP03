@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Privilege;
 use App\Providers\Validator;
 use App\Providers\Auth;
+use App\Models\Log;
 
 class UserController
 {
@@ -15,6 +16,10 @@ class UserController
     {
         Auth::session();
         Auth::privilege(1);
+
+        //noter dans journal de bord que l'utilisateur a visité cette page
+        $log = new Log;
+        $x = $log->insert(['username' => Auth::username(), 'page' => '/livres', 'date' => date('Y-m-d H:i:s')]);
     }
     public function create()
     {

@@ -55,7 +55,6 @@ abstract class CRUD extends \PDO
             $stmt->bindValue(":$key", $value);
         }
         $stmt->execute();
-
         return $this->lastInsertId();
     }
 

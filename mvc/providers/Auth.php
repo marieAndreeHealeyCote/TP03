@@ -25,9 +25,13 @@ class Auth
         }
     }
 
-    static public function user()
+    static public function username()
     {
-        return $_SESSION['username'];
+        if (isset($_SESSION['username'])) {
+            return $_SESSION['username'];
+        } else {
+            return 'guest';
+        }
     }
 
     public function __construct()

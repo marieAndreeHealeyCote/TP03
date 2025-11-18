@@ -86,7 +86,7 @@ CREATE TABLE librairie.user (
 -- Log
 CREATE TABLE librairie.log(
 id INT AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(50) NOT NULL UNIQUE,
+username VARCHAR(50) NOT NULL,
 page VARCHAR(50) NOT NULL,
 date datetime NOT NULL
 );
