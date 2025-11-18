@@ -3,49 +3,28 @@
 namespace App\Models;
 
 use App\Models\CRUD;
-use App\Providers\View;
-use App\Providers\Auth;
-use App\Models\Log;
+
+use App\Controllers\UploadController;
 
 class Upload extends CRUD
 {
 
-    public const TARGET_DIR = "uploads/";
+    protected $table = "page";
+    protected $primaryKey = "id";
+    protected $fillable = ['titre', 'contenu', 'path_img', 'alt_text'];
 
-    public function edit($data = [])
+    public function upload()
     {
-        Auth::session();
-        Auth::privilege(1);
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $controller = new UploadController();
 
-        //noter dans journal de bord que l'utilisateur a visité cette page
-        $log = new Log;
-        $log->insert(['username' => Auth::username(), 'page' => '/upload/edit', 'date' => date('Y-m-d H:i:s')]);
 
-        if (isset($data['id']) && $data['id'] != null) {
-            $file = new Upload;
-            $selectFile = $file->selectId($data['id']);
-            if ($selectFile) {
-
-                $auteur = new Auteur;
-                $listeAuteurs = $auteur->select();
-
-                $categorie = new Categorie;
-                $listeCategories = $categorie->select();
-
-                $editeur = new Editeur;
-                $listeEditeurs = $editeur->select();
-
-                return View::render("livre/edit", [
-                    'inputs' => $selectFile,
-                    'listeAuteurs' => $listeAuteurs,
-                    'listeCategories' => $listeCategories,
-                    'listeEditeurs' => $listeEditeurs,
-                ]);
-            } else {
-                return View::render('error', ['msg' => 'Livre not found!']);
-            }
+        if ($uri === '/upload' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $controller->upload();
+        } elseif ($uri === '/upload') {
+            $controller->form();
         } else {
-            return View::render('error', ['msg' => '404 page not found!']);
+            echo "Page introuvable.";
         }
     }
 }

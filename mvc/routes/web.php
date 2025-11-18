@@ -5,11 +5,11 @@ use App\Controllers\HomeController;
 use App\Controllers\LivreController;
 use App\Controllers\UserController;
 use App\Controllers\AuthController;
+use App\Controllers\UploadController;
+
 
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
-Route::get('/home/edit', 'HomeController@edit');
-Route::post('/home/edit', 'HomeController@update');
 
 Route::get('/livres', 'LivreController@index');
 Route::get('/livre/show', 'LivreController@show');
@@ -21,6 +21,9 @@ Route::get('/livre/delete', 'LivreController@delete');
 
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
+
+Route::get('/upload', 'UploadController@create');
+Route::post('/upload', 'UploadController@index');
 
 Route::get('/login', 'AuthController@create');
 Route::post('/login', 'AuthController@store');

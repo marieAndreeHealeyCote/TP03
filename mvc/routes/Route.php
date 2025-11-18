@@ -2,6 +2,7 @@
 
 namespace App\Routes;
 
+
 class Route
 {
 
@@ -41,9 +42,9 @@ class Route
                 } elseif ($method == 'POST') {
                     if (isset($urlSegments[1])) {
                         parse_str($urlSegments[1], $queryParams);
-                        $controllerInstance->$methodName($_POST, $queryParams, $_FILES);
+                        $controllerInstance->$methodName($_POST, $queryParams);
                     } else {
-                        $controllerInstance->$methodName($_POST, $_FILES);
+                        $controllerInstance->$methodName($_POST);
                     }
                 }
                 return;

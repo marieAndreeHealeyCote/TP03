@@ -13,10 +13,10 @@
     {% endif %}
 
     <form method="post" enctype="multipart/form-data">
-        <label>Select image to upload:
+        <label>Sélectionner une image à téléverser:
             <input type="file" name="fileToUpload" id="fileToUpload">
         </label>
-        <input type="submit" value="Upload Image" name="submit">
+        <input type="submit" value="Téléverser" name="submit">
     </form>
 
 </div>
