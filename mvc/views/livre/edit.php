@@ -58,7 +58,7 @@
     {% if errors.editeur_id is defined %}
     <span class="error">{{ errors.editeur_id }}</span>
     {% endif %}
-    <button type="submit" class="btn vert">Modifier</button>
+    <button type="submit" class="btn vert">Enregistrer</button>
     <a href="{{base}}/livres" class="btn bleu">Annuler</a>
 </form>
 
