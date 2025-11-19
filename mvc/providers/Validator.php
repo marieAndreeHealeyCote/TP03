@@ -28,6 +28,14 @@ class Validator
     }
     public function max($length)
     {
+        //dans le cas d'un upload
+        if (is_array($this->value) && isset($this->value['size'])) {
+            if ($this->value['size'] > $length) {
+                $this->errors[$this->key] = "Your file is too large.";
+                return $this;
+            }
+        }
+        //dans le cas d'une valeur textuelle
         if (strlen($this->value) > $length) {
             $this->errors[$this->key] = "$this->name must be less than $length characters";
         }
@@ -35,8 +43,32 @@ class Validator
     }
     public function min($length)
     {
+        //dans le cas d'un upload
+        if (is_array($this->value) && isset($this->value['size'])) {
+            if ($this->value['size'] < $length) {
+                $this->errors[$this->key] = "Your file is too large.";
+                return $this;
+            }
+        }
+        //dans le cas d'une valeur textuelle
         if (strlen($this->value) < $length) {
             $this->errors[$this->key] = "$this->name must be more than $length characters";
+        }
+        return $this;
+    }
+    public function image()
+    {
+        if (!is_array($this->value) && !isset($this->value['tmp_name'])) {
+            if (getimagesize($this->value["tmp_name"]) == false) {
+                $this->errors[$this->key] = "$this->name must be an image.";
+            }
+        }
+        return $this;
+    }
+    public function fileType($fileTypes)
+    {
+        if (!in_array($this->value['type'], $fileTypes)) {
+            $this->errors[$this->key] = "$this->name is not in the required format: " . implode(',', $fileTypes);
         }
         return $this;
     }
@@ -47,7 +79,6 @@ class Validator
         }
         return $this;
     }
-
     public function int()
     {
         if (!filter_var($this->value, FILTER_VALIDATE_INT)) {
