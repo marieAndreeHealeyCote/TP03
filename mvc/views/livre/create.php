@@ -1,7 +1,7 @@
 {{ include('layouts/header.php', {'title': 'Livre'}) }}
 
 <h2>Ajouter un nouveau livre</h2>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <div>
         <label for="titre">Titre :</label>
         <input type="text" name="titre" id="titre" value="{{ inputs.titre ?? livre.titre }}">
@@ -58,8 +58,15 @@
     {% if errors.editeur_id is defined %}
     <span class="error">{{ errors.editeur_id }}</span>
     {% endif %}
+    <div>
+        <label for="upload">Ajouter une image de couverture</label>
+        <input type="file" name="upload" id="upload">
+    </div>
+    {% if errors.upload is defined %}
+    <span class="error">{{ errors.upload }}</span>
+    {% endif %}
     <button type="submit" class="btn vert">Ajouter</button>
-    <a href="{{base}}/livre/index" class="btn bleu">Annuler</a>
+    <a href="{{base}}/livres" class="btn bleu">Annuler</a>
 </form>
 
 {{ include('layouts/footer.php') }}

@@ -8,5 +8,5 @@ class Livre extends CRUD
 {
     protected $table = 'livres';
     protected $primaryKey = 'id';
-    protected $fillable = ['titre', 'annee_publication', 'categorie_id', 'editeur_id', 'auteur_id'];
+    protected $fillable = ['titre', 'annee_publication', 'categorie_id', 'editeur_id', 'auteur_id', 'upload'];
 }

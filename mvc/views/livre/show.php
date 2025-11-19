@@ -2,6 +2,7 @@
 <h1>Livre créé</h1>
 
 <div class="container">
+    <img src="{{ base }}/{{ inputs.upload }}">
     <form method="post">
         <p><strong>Titre: </strong>{{ inputs.titre }}</p>
         <p><strong>Auteur: </strong>{{ inputs.auteur_nom }}</p>
