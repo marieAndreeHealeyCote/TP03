@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS librairie.livres (
     editeur_id INT NOT NULL
 );
 
+ALTER TABLE librairie.livres
+	ADD COLUMN upload VARCHAR(255);
 
 ALTER TABLE librairie.livres
     ADD CONSTRAINT fk_auteur FOREIGN KEY (auteur_id) REFERENCES auteurs(id);
@@ -65,15 +67,13 @@ INSERT INTO auteurs (nom) VALUES
 INSERT INTO livres (titre, auteur_id, annee_publication, categorie_id, editeur_id) VALUES
 ('Je suis un livre', 1, 1990, 1, 1);
 
-INSERT INTO librairie.log (username, page, date) VALUES ('admin', '/log', '2025-11-17 22:23:00.00');
-
--- Privilege
+-- PRIVILEGE
 CREATE TABLE librairie.privilege (
     id INT AUTO_INCREMENT PRIMARY KEY,
     privilege VARCHAR(50) NOT NULL
 );
 
--- User
+-- USER
 CREATE TABLE librairie.user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE librairie.user (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Log
+-- LOG
 CREATE TABLE librairie.log(
 id INT AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(50) NOT NULL,
@@ -93,11 +93,5 @@ page VARCHAR(50) NOT NULL,
 date datetime NOT NULL
 );
 
--- Page
-CREATE TABLE librairie.page(
-id INT AUTO_INCREMENT PRIMARY KEY,
-titre VARCHAR(100) NOT NULL,
-contenu TEXT NOT NULL,
-path_img VARCHAR(255) NOT NULL,
-alt_text VARCHAR(255) NOT NULL
-);
+-- DONNÉES DE TESTS
+INSERT INTO librairie.log (username, page, date) VALUES ('admin', '/log', '2025-11-17 22:23:00.00');
