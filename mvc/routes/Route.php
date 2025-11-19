@@ -42,9 +42,9 @@ class Route
                 } elseif ($method == 'POST') {
                     if (isset($urlSegments[1])) {
                         parse_str($urlSegments[1], $queryParams);
-                        $controllerInstance->$methodName($_POST, $queryParams);
+                        $controllerInstance->$methodName($_POST, $queryParams, $_FILES);
                     } else {
-                        $controllerInstance->$methodName($_POST);
+                        $controllerInstance->$methodName($_POST, [], $_FILES);
                     }
                 }
                 return;

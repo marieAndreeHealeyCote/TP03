@@ -130,7 +130,7 @@ class LivreController
         ]);
     }
 
-    public function store($data = [])
+    public function store($data = [], $get = [], $files = [])
     {
         Auth::session();
 
@@ -141,9 +141,30 @@ class LivreController
         $validator->field('editeur_id', $data['editeur_id'])->required()->int();
         $validator->field('annee_publication', $data['annee_publication'])->required()->int();
 
+        if (isset($files['upload'])) {
+            $validator->field('upload', $files['upload'])->image()->fileType(["image/jpeg", "image/png", "image/gif"])->max(500000);
+        }
+
         if ($validator->isSuccess()) {
+
+            //téléverser l'image
+            if (isset($files['upload'])) {
+                $target_dir = __DIR__ . '/../public/uploads/';
+                $target_file = $target_dir . basename($files["upload"]["name"]);
+                if (move_uploaded_file($files["upload"]["tmp_name"], $target_file)) {
+                    //mettre à jour $data avec le path du fichier
+                    $filename = basename($files["upload"]["name"]);
+                    $data['upload'] = "/public/uploads/" . $filename;
+                } else {
+                    die('oh no...store');
+                    return View::render('error', "Sorry, there was an error uploading your file");
+                }
+            }
+
+            //créer un livre
             $livre = new Livre;
             $insert = $livre->insert($data);
+
             if ($insert) {
                 return View::redirect('livre/show?id=' . $insert);
             } else {
@@ -210,7 +231,7 @@ class LivreController
         }
     }
 
-    public function update($data = [], $get = [])
+    public function update($data = [], $get = [], $files = [])
     {
         Auth::session();
 
@@ -222,7 +243,27 @@ class LivreController
             $validator->field('editeur_id', $data['editeur_id'])->required()->int();
             $validator->field('annee_publication', $data['annee_publication'])->required()->int();
 
+            if (isset($files['upload'])) {
+                $validator->field('upload', $files['upload'])->image()->fileType(["image/jpeg", "image/png", "image/gif"])->max(500000);
+            }
+
             if ($validator->isSuccess()) {
+
+                //téléverser l'image
+                if (isset($files['upload'])) {
+                    $target_dir = __DIR__ . '/../public/uploads/';
+                    $target_file = $target_dir . basename($files["upload"]["name"]);
+                    if (move_uploaded_file($files["upload"]["tmp_name"], $target_file)) {
+                        //mettre à jour $data avec le path du fichier
+                        $filename = basename($files["upload"]["name"]);
+                        $data['upload'] = "/public/uploads/" . $filename;
+                    } else {
+                        die('oh no...update');
+                        return View::render('error', "Sorry, there was an error uploading your file");
+                    }
+                }
+
+                //modifier le livre
                 $livre = new Livre;
                 $insert = $livre->update($data, $get['id']);
                 if ($insert) {
